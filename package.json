@@ -1,0 +1,25 @@
+{
+  "name": "webpage-scraper",
+  "version": "1.0.0",
+  "description": "抓却页面内容",
+  "main": "index.js",
+  "repository": "git@gitee.com:jzz-codebase/webpage-scraper.git",
+  "author": "wahack <liaoyux@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "cheerio": "^1.0.0-rc.2",
+    "html-entities": "^1.2.1",
+    "iconv-lite": "^0.4.19",
+    "is-url": "^1.2.2",
+    "jzz-server": "git+ssh://git@gitee.com:jzz-codebase/jzz-server.git",
+    "node-readability": "git+https://github.com/wahack/readability.git",    
+    "lodash": "^4.17.4",
+    "minimatch": "^3.0.4",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "tough-cookie-filestore": "^0.0.1",
+    "urijs": "^1.19.0"
+  }
+}
