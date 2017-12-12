@@ -48,17 +48,18 @@ module.exports = {
         query = new Function(`${$('head script').eq(1).html().replace('window', 'new Object({})')};return {__biz: biz, sn: sn, mid:mid, idx:idx}`)()
       } catch (e) {}
     }
+    let $profile = $('#js_profile_qrcode')
     return {
       author_link: `https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=320&__biz=${query.__biz}&mid=${query.mid}&idx=${query.idx}&sn=${query.sn}`,
       name: '微信公众号',
       host: 'mp.weixin.qq.com',
-      author_name: $('#js_profile_qrcode  .profile_nickname').text(),
+      author_name: $profile.find('.profile_nickname').text(),
       // 微信logo
       avatar: 'https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/images/icon/common/favicon22c41b.ico',
       // 公众号id
-      authorid: $('#js_profile_qrcode .profile_meta_value').eq(0).text(),
+      authorid: $profile.find('.profile_meta_value').eq(0).text(),
       // 公号描述
-      author_bio: $('#js_profile_qrcode .profile_meta_value').eq(1).text()
+      author_bio: $profile.find('.profile_meta_value').eq(1).text()
     }
   }
 }
