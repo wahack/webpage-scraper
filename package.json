@@ -14,12 +14,15 @@
     "iconv-lite": "^0.4.19",
     "is-url": "^1.2.2",
     "jzz-server": "git+ssh://git@gitee.com:jzz-codebase/jzz-server.git",
-    "node-readability": "git+https://github.com/wahack/readability.git",    
     "lodash": "^4.17.4",
     "minimatch": "^3.0.4",
+    "node-readability": "git+https://github.com/wahack/readability.git",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
     "tough-cookie-filestore": "^0.0.1",
     "urijs": "^1.19.0"
+  },
+  "devDependencies": {
+    "fastify": "^0.35.1"    
   }
 }
