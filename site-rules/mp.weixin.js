@@ -3,7 +3,7 @@ const pick = require('lodash').pick
 const maxBy = require('lodash').maxBy
 const funs = require('../helper')
 const notify = require('jzz-server/notify')
-
+// TODO: 处理分享类型的文章 https://mp.weixin.qq.com/s/JGWy077cIpg9lrVCvDMoTg
 module.exports = {
   title ($, url) {
     let title = $('#activity-name').text().trim()

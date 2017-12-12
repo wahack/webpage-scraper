@@ -363,10 +363,23 @@ module.exports = [
   },
   {
     "name": "segmentfault.com",
-    "title": "[['title']]",
-    "article": "[['#articleTitle']]",
+    "title": "[['#articleTitle']]",
+    "article": "[['.article__content']]",
     "url": "segmentfault.com/a/",
-    "image": "[[{$('.article__content img').eq(0).attr('src')}]]"
+    "image": function ($) {
+      let src = $('.article__content img').eq(0).attr('data-src')
+      src = src[0] === '/' ? (`https://segmentfault.com` + src) : src
+      return src
+    },
+    "publisher": {
+      'name': "segmentfault",
+      'host': 'segmentfault.com',
+      'logo': "https://static.segmentfault.com/v-5a2f8569/global/img/favicon.ico",
+      'author_name': "[[{$('.article__widget-author-name').text().trim()}]]",
+      'author_link': "[[{'https://segmentfault.com' + $('.article__widget-author-name').attr('href')}]]",
+      'author_avatar': "[[{$('.article__widget--author img').attr('src')}]]",
+      'author_bio': "[[{$('.article__widget-author-desc').text().trim()}]]"
+    }
   },
   {
     "name": "post.juejin.im",
