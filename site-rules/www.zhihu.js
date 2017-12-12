@@ -39,17 +39,16 @@ module.exports = {
     let data = extractData($, url)
     let question = data.question
     let answers = data.answers.map(answer => {
-      return `<p style="color:#607fa6">@${answer.author.name}</p><div>${answer.content}</div>`
+      return `<p style="color:#607fa6;margin:20px auto;">@${answer.author.name}的回答</p><div>${answer.content}</div>`
     }).join('<br/>')
     return `<p>${question.detail}</p><br/>${answers}`.replace(/<\/?noscript>/g, '')
   },
   publisher ($, url) {
     return {
       name: '知乎问答',
+      host: 'www.zhihu.com',
       // 知乎ogo
-      avatar: 'https://www.zhihu.com/favicon.ico',
-      // 来源
-      source: 'qa.zhihu'
+      logo: 'https://www.zhihu.com/favicon.ico'
     }
   }
 }

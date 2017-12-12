@@ -9,7 +9,7 @@ const URI = require('urijs')
 function wrap (rule) {
   return function ($, url) {
     return rule($, url)
-  };
+  }
 }
 
 /**
@@ -22,6 +22,7 @@ module.exports = [wrap(function ($, url) {
   url = new URI(url)
   return {
     name: url.subdomain() === 'www' ? url.domain() : url.hostname(),
-    avatar: favicon
+    logo: favicon,
+    host: url.hostname()
   }
 })]

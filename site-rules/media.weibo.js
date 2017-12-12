@@ -45,14 +45,15 @@ module.exports = {
   publisher ($, url) {
     let author = extractData($, url).user
     return {
-      name: '微博头条',
+      name: '微博文章',
+      host: 'media.weibo.cn',
       // 微博ogo
-      avatar: 'http://weibo.com/favicon.ico',
+      logo: 'http://weibo.com/favicon.ico',
       // 来源
-      source: 'weibo',
-      authorName: author.name,
-      authorAvatar: author.profile_image_url,
-      authorBio: author.description
+      author_name: author.name,
+      author_avatar: author.profile_image_url,
+      author_bio: author.description,
+      authorid: author.idstr
     }
   }
 }

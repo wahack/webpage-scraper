@@ -135,11 +135,11 @@ module.exports = [
     "url": "www.jianshu.com/p/",
     "publisher": {
       'name': "简书",
-      'avatar': "http://www.jianshu.com/favicon.ico",
-      'source': 'jianshu',
-      'authorName': "[['.author .name']]",
-      'authorAvatar': "[[{$('.author .avatar img').attr('src')||''}]]",
-      'authorBio': "[['.follow-detail .signature']]"
+      'logo': "https://www.jianshu.com/favicon.ico",
+      'host': 'www.jianshu.com',
+      'author_name': "[['.author .name']]",
+      'author_avatar': "[[{$('.author .avatar img').attr('src')||''}]]",
+      'author_bio': "[['.follow-detail .signature']]"
     }
   },
   {
@@ -253,19 +253,6 @@ module.exports = [
     "title": "[['h2.entry-title']]",
     "article": "[['div.entry-content']]",
     "url": "www.azofreeware.com/*"
-  },
-  {
-    "name": "weibo.com",
-    "title": "[[{$('.main_editor ').find('.title').text()}]]",
-    "article": "[['div.WB_editor_iframe']]",
-    "url": "weibo.com/ttarticle/p/",
-    "image": "[[{$('.main_toppic img').attr('src')}]]",
-    "publisher": {
-      'name': "微博头条文章",
-      'avatar': "http://weibo.com/favicon.ico",
-      'authorName': "[['.authorinfo .W_autocut']]",
-      'authorAvatar': "[[{$('.authorinfo .W_autocut img').attr('src')||''}]]"
-    }
   },
   {
     "name": "leikeji.com",
@@ -1143,9 +1130,12 @@ module.exports = [
     "url": "www.ui.cn/detail/",
     "publisher": {
       'name': "UI中国",
-      'avatar': "http://www.ui.cn/favicon.ico",
-      'authorName': "[[{$('#p-author').text().trim()}]]",
-      'authorAvatar': "[[{$('.aside .zbd_portrait img').attr('src')}]]"
+      'host': 'www.ui.cn',
+      'logo': "https://www.ui.cn/favicon.ico",
+      'author_name': "[[{$('#p-author').text().trim()}]]",
+      'author_link': "[[{$('#p-author').attr('href')}]]",
+      'author_avatar': "[[{$('.aside .zbd_portrait img').attr('src')}]]",
+      'author_bio': "[[{$('.zbd_introduce').text().trim()}]]"
     }
   }, {
     "name": "pmcaff.com/article",
@@ -1155,7 +1145,8 @@ module.exports = [
     "url": "www.pmcaff.com/article/index/*",
     "publisher": {
       "name": "pmcaff产品经理社区",
-      "avatar": "http://www.pmcaff.com/favicon.ico"
+      "host": "www.pmcaff.com",
+      "logo": "http://www.pmcaff.com/favicon.ico"
     }
   }, {
     "name": "pmcaff.com/discuss",
@@ -1164,7 +1155,8 @@ module.exports = [
     "url": "www.pmcaff.com/discuss/answer/*",
     "publisher": {
       "name": "pmcaff产品经理社区",
-      "avatar": "http://www.pmcaff.com/favicon.ico"
+      "host": "www.pmcaff.com",      
+      "logo": "http://www.pmcaff.com/favicon.ico"
     }
   }
 ]

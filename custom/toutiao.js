@@ -34,12 +34,11 @@ module.exports = function (url) {
           about: cheerio.load(data.content.substr(0, 250)).text().trim(),
           image: (data.content.match(/<img src="([^"]+)"/) || [])[1],
           publisher: {
-            authorName: data.media_user.screen_name,
-            authorAvatar: data.media_user.avatar_url,
+            author_name: data.media_user.screen_name,
+            author_avatar: data.media_user.avatar_url,
             name: '今日头条',
-            source: 'toutiao',
-            sourceText: '今日头条',
-            avatar: 'https://www.toutiao.com/favicon.ico'
+            host: 'www.toutiao.com',
+            logo: 'https://www.toutiao.com/favicon.ico'
           }
         })
       }

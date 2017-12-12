@@ -7,7 +7,8 @@ const config = {
   'mp.weixin.qq.com': require('./mp.weixin'),
   'zhuanlan.zhihu.com': require('./zhuanlan.zhihu'),
   'www.zhihu.com': require('./www.zhihu'),
-  'media.weibo.cn': require('./media.weibo')
+  'media.weibo.cn': require('./media.weibo'),
+  'weibo.com': require('./weibo.com')
 }
 /**
  * [[{express}]] 带执行结果的表达式

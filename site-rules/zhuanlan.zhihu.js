@@ -42,12 +42,13 @@ module.exports = {
     return {
       name: '知乎专栏',
       // 知乎ogo
-      avatar: 'https://www.zhihu.com/favicon.ico',
+      logo: 'https://www.zhihu.com/favicon.ico',
+      host: 'zhuanlan.zhihu.com',
       // 来源
-      source: 'zhihu',
-      authorName: author.name,
-      authorAvatar: author.avatarUrl,
-      authorBio: author.bio
+      author_name: author.name,
+      author_avatar: author.avatarUrl,
+      author_bio: author.bio,
+      author_link: author.profileUrl
     }
   }
 }

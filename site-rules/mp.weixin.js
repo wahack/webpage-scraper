@@ -2,12 +2,13 @@ const URI = require('urijs')
 const pick = require('lodash').pick
 const maxBy = require('lodash').maxBy
 const funs = require('../helper')
+const notify = require('jzz-server/notify')
 
 module.exports = {
   title ($, url) {
     let title = $('#activity-name').text().trim()
     if (!title) {
-      console.error('异常来自meta-scraper:site-rules:mp.weixin:title')
+      notify.error('文章抓取警告', '公众号爬取错误', url)
     }
     return title
   },
@@ -48,18 +49,16 @@ module.exports = {
       } catch (e) {}
     }
     return {
-      qrcode: `https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=320&__biz=${query.__biz}&mid=${query.mid}&idx=${query.idx}&sn=${query.sn}`,
-      // 公众号的名字
+      author_link: `https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=320&__biz=${query.__biz}&mid=${query.mid}&idx=${query.idx}&sn=${query.sn}`,
       name: '微信公众号',
-      authorName: $('#js_profile_qrcode  .profile_nickname').text(),
+      host: 'mp.weixin.qq.com',
+      author_name: $('#js_profile_qrcode  .profile_nickname').text(),
       // 微信logo
       avatar: 'https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/images/icon/common/favicon22c41b.ico',
-      // 来源
-      source: 'wechat',
       // 公众号id
-      wechatId: $('#js_profile_qrcode .profile_meta_value').eq(0).text(),
+      authorid: $('#js_profile_qrcode .profile_meta_value').eq(0).text(),
       // 公号描述
-      describe: $('#js_profile_qrcode .profile_meta_value').eq(1).text()
+      author_bio: $('#js_profile_qrcode .profile_meta_value').eq(1).text()
     }
   }
 }
