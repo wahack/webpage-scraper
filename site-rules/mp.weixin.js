@@ -53,6 +53,7 @@ module.exports = {
       author_link: `https://mp.weixin.qq.com/mp/qrcode?scene=10000004&size=320&__biz=${query.__biz}&mid=${query.mid}&idx=${query.idx}&sn=${query.sn}`,
       name: '微信公众号',
       host: 'mp.weixin.qq.com',
+      logo: 'https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/images/icon/common/favicon22c41b.ico',
       author_name: $profile.find('.profile_nickname').text(),
       // 微信logo
       avatar: 'https://res.wx.qq.com/mmbizwap/zh_CN/htmledition/images/icon/common/favicon22c41b.ico',
