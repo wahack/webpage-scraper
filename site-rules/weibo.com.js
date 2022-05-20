@@ -1,11 +1,11 @@
 const URL = require('url')
-const notify = require('jzz-server/notify')
+// const notify = require('jzz-server/notify')
 
 module.exports = {
   title ($, url) {
     let title = $('.main_editor ').find('.title').text().trim()
     if (!title) {
-      notify.error('文章抓取警告', '微博爬取错误:article', url)
+      // notify.error('文章抓取警告', '微博爬取错误:article', url)
     }
     return title
   },

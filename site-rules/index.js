@@ -1,8 +1,8 @@
 const URL = require('url')
 const sites = require('./sites')
 const minimatch = require('minimatch')
-const _ = require('lodash')
-const notify = require('jzz-server/notify')
+const omit = require('lodash/omit')
+// const notify = require('jzz-server/notify')
 const config = {
   'mp.weixin.qq.com': require('./mp.weixin'),
   'zhuanlan.zhihu.com': require('./zhuanlan.zhihu'),
@@ -45,15 +45,15 @@ module.exports = function (url) {
     return !!~url.indexOf(site.url)
   })
   if (!targetSite) {
-    notify.error('文章抓取警告', '未匹配url', url)
+    // notify.error('文章抓取警告', '未匹配url', url)
     return null
   }
   let result = {}
-  let t = _.omit(targetSite, ['name', 'url'])
+  let t = omit(targetSite, ['name', 'url'])
   for (let key in t) {
     result[key] = function ($, url) {
       let value = getValueFn($, t[key], key === 'article' ? 'html' : 'text')
-      if (!value) notify.error('文章抓取警告', `抓取${targetSite.name}失败:${key}`, url)
+      // if (!value) notify.error('文章抓取警告', `抓取${targetSite.name}失败:${key}`, url)
       return value
     }
   }

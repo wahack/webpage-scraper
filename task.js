@@ -25,7 +25,7 @@ function clearHttp (url) {
   if (url.substr(0, 7) === 'http://') return url.substr(7)
   return url
 }
-console.time('sf')
+// console.time('sf')
 sites.forEach(site => {
   let resultSite = {}
   resultSite.name = site.name

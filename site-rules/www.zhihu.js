@@ -1,16 +1,17 @@
-const _ = require('lodash')
-const notify = require('jzz-server/notify')
-const cheerio = require('cheerio')
+const values = require('lodash/values')
+// const notify = require('jzz-server/notify')
+// const cheerio = require('cheerio')
 
 function extractData ($, url) {
   if ($.__post_data) return $.__post_data
   // console.log($('#preloadedState').text())
-  let data = JSON.parse($('#data').attr('data-state')).entities
+  // console.log($('#js-initialData').html())
+  let data = JSON.parse($('#js-initialData').html()).initialState.entities
   $.__post_data = {
-    question: _.values(data.questions)[0],
-    answers: _.values(data.answers)
+    question: values(data.questions)[0],
+    answers: values(data.answers)
   }
-  if (!$.__post_data.question.title) notify.error('文章抓取警告', '知乎问答爬取错误:question', url)
+  // if (!$.__post_data.question.title) notify.error('文章抓取警告', '知乎问答爬取错误:question', url)
   return $.__post_data
 }
 
@@ -33,7 +34,7 @@ module.exports = {
     return ''
   },
   about ($) {
-    return cheerio.load(extractData($).question.excerpt).text() || ''
+    return $(extractData($).question.excerpt).text() || ''
   },
   article ($, url) {
     let data = extractData($, url)

@@ -1,7 +1,7 @@
 /**
  * 函数工具库
  */
-const pick = require('lodash').pick
+const pick = require('lodash/pick')
 const URI = require('urijs')
 
 module.exports = {

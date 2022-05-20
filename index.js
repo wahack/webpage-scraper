@@ -1,9 +1,10 @@
-const commonRules = require('./rules')
-const siteRules = require('./site-rules')
+// const commonRules = require('./rules')
+// const siteRules = require('./site-rules')
+const extractor = require('./extractor')
 const cheerio = require('cheerio')
 const _ = require('lodash')
 const request = require('request-promise')
-const store = require('./store')
+// const store = require('./store')
 const htmlDecode = require('./html-decode')
 const FileCookieStore = require('tough-cookie-filestore')
 const path = require('path')
@@ -12,51 +13,69 @@ const config = require('./config')
 const URL = require('url')
 const customScraper = require('./custom')
 const XmlEntities = require('html-entities').XmlEntities
+const read = require('node-readability').read
 
-function injectPlugins ($) {
-  $.prototype.exclude = function (selector) {
-    this.find(selector).remove()
-    return this
-  }
-}
+// function injectPlugins ($) {
+//   $.prototype.exclude = function (selector) {
+//     this.find(selector).remove()
+//     return this
+//   }
+// }
 
 function scrapeMetadata (html, url, opts = {}) {
-  let rules = _.mergeWith({}, commonRules, siteRules(url), (src, newVal) => {
-    if (!src || !newVal) return src || newVal
-    if (_.isArray(newVal)) return newVal.concat(src)
-    if (_.isFunction(newVal)) return [newVal].concat(src)
-  })
-  if (!opts.scrapArticle) rules = _.omit(rules, 'article')
-  var keys = Object.keys(rules)
   var $ = cheerio.load(html)
-  injectPlugins($)
-  var promises = keys.map(function (key) {
-    return scrapeMetadatum($, url, rules[key])
+  return extractor($, url, function (rules) {
+    if (opts.scrapArticle) {
+      rules.article.push(
+        function ($, url) {
+          let path = URL.parse(url).pathname
+          if (!path || path === '/') return ''
+          return new Promise((resolve, reject) => {
+            read($.html(), (err, article, meta) => {
+              if (!err) resolve(article.content)
+            })
+          })
+        }
+      )
+    } else {
+      return _.omit(rules, 'article')
+    }
+    return rules
   })
-  return Promise.all(promises).then(function (values) {
-    let result = keys.reduce(function (memo, key, i) {
-      memo[key] = values[i]
-      return memo
-    }, {})
-    store(result, html)
-    delete result.extra
-    return result
-  })
+  // let rules = _.mergeWith({}, commonRules, siteRules(url), (src, newVal) => {
+  //   if (!src || !newVal) return src || newVal
+  //   if (_.isArray(newVal)) return newVal.concat(src)
+  //   if (_.isFunction(newVal)) return [newVal].concat(src)
+  // })
+  // var keys = Object.keys(rules)
+  // injectPlugins($)
+  // var promises = keys.map(function (key) {
+  //   return scrapeMetadatum($, url, rules[key])
+  // })
+  // return Promise.all(promises).then(function (values) {
+  //   let result = keys.reduce(function (memo, key, i) {
+  //     memo[key] = values[i]
+  //     return memo
+  //   }, {})
+  //   store(result, html)
+  //   delete result.extra
+  //   return result
+  // })
 }
 /**
  * 获取第一个非空的值
- */
-function scrapeMetadatum ($, url, rules) {
-  if (!Array.isArray(rules)) rules = [rules]
-  return rules.reduce(function (promise, rule) {
-    return promise.then(function (value) {
-      if (value != null) return value
-      var next = rule($, url)
-      if (next != null) return next
-      return null
-    })
-  }, Promise.resolve())
-}
+//  */
+// function scrapeMetadatum ($, url, rules) {
+//   if (!Array.isArray(rules)) rules = [rules]
+//   return rules.reduce(function (promise, rule) {
+//     return promise.then(function (value) {
+//       if (value != null) return value
+//       var next = rule($, url)
+//       if (next != null) return next
+//       return null
+//     })
+//   }, Promise.resolve())
+// }
 /**
  * TODO:
  *   突破部分网站521状态码的防爬：https://wequant.io/study/intro.system.html

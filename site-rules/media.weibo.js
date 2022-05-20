@@ -1,7 +1,7 @@
 // const URI = require('urijs')
 // const pick = require('lodash').pick
 // const funs = require('../../funs')
-const notify = require('jzz-server/notify')
+// const notify = require('jzz-server/notify')
 
 function extractData ($, url) {
   if ($.__post_data) return $.__post_data
@@ -14,7 +14,7 @@ function extractData ($, url) {
     link: data.url,
     cover: data.config.cover_img
   }
-  if (!$.__post_data.title) notify.error('文章抓取警告', '微博爬取错误:article', url)
+  // if (!$.__post_data.title) notify.error('文章抓取警告', '微博爬取错误:article', url)
   return $.__post_data
 }
 

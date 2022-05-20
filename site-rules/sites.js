@@ -367,7 +367,9 @@ module.exports = [
     "article": "[['.article__content']]",
     "url": "segmentfault.com/a/",
     "image": function ($) {
-      let src = $('.article__content img').eq(0).attr('data-src')
+      let $img = $('.article__content img')
+      if (!$img[0]) return ''
+      let src = $img.eq(0).attr('data-src')
       src = src[0] === '/' ? (`https://segmentfault.com` + src) : src
       return src
     },
@@ -375,10 +377,10 @@ module.exports = [
       'name': "segmentfault",
       'host': 'segmentfault.com',
       'logo': "https://static.segmentfault.com/v-5a2f8569/global/img/favicon.ico",
-      'author_name': "[[{$('.article__widget-author-name').text().trim()}]]",
-      'author_link': "[[{'https://segmentfault.com' + $('.article__widget-author-name').attr('href')}]]",
-      'author_avatar': "[[{$('.article__widget--author img').attr('src')}]]",
-      'author_bio': "[[{$('.article__widget-author-desc').text().trim()}]]"
+      'author_name': "[[{$('.article__authormeta strong').text().trim()}]]",
+      'author_link': "[[{'https://segmentfault.com' + $('.article__authormeta a').attr('href')}]]",
+      'author_avatar': "[[{$('.article__authorleft img').attr('src')}]]",
+      'author_bio': ""
     }
   },
   {
